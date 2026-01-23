@@ -32,7 +32,7 @@ function About() {
           end: () => "+=" + scrollLength,
           pin: true,
           scrub: 1,
-          markers: true,
+          markers: false,
           anticipatePin: 1,
         },
       })

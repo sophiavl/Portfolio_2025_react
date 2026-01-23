@@ -105,7 +105,7 @@ function Hero() {
           end: "+=1100",
           pin: true,
           scrub: true,
-          markers: true,
+          // markers: true,
         },
       });
 
