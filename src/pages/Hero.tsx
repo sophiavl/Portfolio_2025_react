@@ -1,0 +1,198 @@
+import Button from "../components/Button";
+// import ProjectCard from "../components/ProjectCard";
+import SkillBlock from "../components/SkillBlock";
+import FlowerRow from "../components/FlowerRow";
+import { useRef } from "react";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
+
+function Hero() {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const skills = [
+    { skillname: "REACT", level: 4 },
+    { skillname: "TAILWINDCSS", level: 4 },
+    { skillname: "FIGMA", level: 5 },
+    { skillname: "GSAP", level: 3 },
+    { skillname: "BLENDER", level: 2 },
+    { skillname: "LARAVEL", level: 2 },
+    { skillname: "HTML / CSS / JAVASCRIPT", level: 4 },
+    { skillname: "VUE", level: 4 },
+    { skillname: "TYPESCRIPT", level: 3 },
+  ];
+
+  // const skillBlocks = gsap.utils.toArray<HTMLElement>(".skill-block");
+  const aboutText =
+    "Hi! I’m Sophia, a front-end developer and UI/UX designer from the Netherlands. I love designing and developing clean, intuitive interfaces that actually make sense to the people using them. I'm collecting skills to be able to do this...";
+  useGSAP(
+    () => {
+      gsap.set(".skill-block", { opacity: 0, scale: 0.9 });
+      gsap.set(".about-text", { opacity: 0, y: -20 });
+
+      gsap.from(".hero-name", {
+        x: -200,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        stagger: 0.15,
+      });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".pin-container",
+          start: "top 12%",
+          end: "+=2500",
+          scrub: true,
+          pin: true,
+          anticipatePin: 1,
+          // markers: true,
+        },
+      });
+
+      tl.to(
+        ".flower",
+        {
+          rotation: 360,
+          ease: "none",
+          duration: 1,
+          stagger: 0.09,
+        },
+        0,
+      );
+
+      // About tekst fade in
+      tl.to(
+        ".about-text",
+        {
+          opacity: 1,
+          y: 20,
+          ease: "power2.out",
+          pin: true,
+        },
+        0.5,
+      );
+      tl.to(".about-text", {
+        opacity: 0,
+        y: 20,
+        ease: "power2.out",
+        pin: true,
+      });
+
+      ScrollTrigger.batch(".skill-block", {
+        start: "top 70%",
+        onEnter: (batch) =>
+          gsap.to(batch, {
+            opacity: 1,
+            scale: 1,
+            stagger: 0.15,
+            duration: 0.6,
+            ease: "power3.out",
+          }),
+        onLeaveBack: (batch) =>
+          gsap.to(batch, {
+            opacity: 0,
+            scale: 0.9,
+            duration: 0.3,
+          }),
+      });
+
+      const tlWork = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".work-together-section",
+          start: "top 10%",
+          end: "+=1100",
+          pin: true,
+          scrub: true,
+          markers: true,
+        },
+      });
+
+      tlWork.from(".contact-button", { opacity: 0, y: 30, duration: 0.5 });
+      tlWork.from(".not-convinced", { opacity: 0, y: 30, duration: 0.5 });
+      tlWork.from(".about-project-buttons", {
+        opacity: 0,
+        y: 30,
+        stagger: 0.2,
+        duration: 0.5,
+      });
+    },
+    { scope: containerRef },
+  );
+  return (
+    <div
+      ref={containerRef}
+      className='flex flex-col gap-8 px-8 2xl:px-28'
+    >
+      <div className='h-dvh flex flex-col justify-between pt-24 items-start bg-primary'>
+        <div className='flex flex-col items-start h-[90%] justify-between gap-12 w-full'>
+          <div className='flex flex-col gap-8'>
+            <h1 className='hero-name text-(--color-accent)'>
+              SOPHIA VAN LIESHOUT
+            </h1>
+            <div className='flex flex-col gap-2'>
+              <h2>FRONTEND DEVELOPMENT</h2>
+              <h2>UI/UX DESIGN</h2>
+            </div>
+          </div>
+          {/* <FlowerRow></FlowerRow> */}
+          <Button
+            className='w-full lg:w-1/2 xl:w-1/3'
+            label='GET IN TOUCH'
+          ></Button>
+        </div>
+      </div>
+      <div className='intro-section flex flex-col gap-6'>
+        <div className='pin-container relative flex flex-col gap-24 h-[250dvh]'>
+          <FlowerRow></FlowerRow>
+          <p className='about-text'>{aboutText}</p>
+        </div>
+        <div className='skill-starter pt-64 h-2'></div>
+        <div className='skill-items flex flex-col gap-2 xl:inline-grid gap-y-3.75 gap-x-3.75 self-stretch grid-rows-[repeat(3,fit-content(100%))]  grid-cols-3'>
+          {[...Array(skills.length)].map((_, i) => (
+            <SkillBlock
+              level={skills[i].level}
+              className='skill'
+              skill={skills[i].skillname}
+            />
+          ))}
+        </div>
+        <div className='h-10'></div>
+
+        <div className='work-together-section flex flex-col h-[200dvh] py-6 gap-18'>
+          <div className='pin-work flex flex-col gap-6'>
+            <h3 className='want-work text-(--color-accent)'>
+              Want to work together?
+            </h3>
+            <Button
+              className='contact-button w-[20rem] xl:w-160 h-40'
+              label='GET IN TOUCH'
+              to='/projects'
+            ></Button>
+          </div>
+          <div className='flex flex-col gap-6'>
+            <h3 className='not-convinced text-(--color-accent) text-start'>
+              Not convinced yet?
+            </h3>
+
+            <div className='about-project-buttons flex w-full gap-4'>
+              <Button
+                className='w-[20rem] xl:w-160 h-40'
+                label='SEE PROJECTS'
+                to='/projects'
+              ></Button>
+              <Button
+                className='w-[20rem] xl:w-160 h-40'
+                label='ABOUT ME'
+                to='/about'
+              ></Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Hero;
