@@ -69,7 +69,7 @@ export default function SkillBlock({
           <img
             key={i}
             className='skill-flower xl:w-12'
-            src='/src/assets/images/LOGO.png'
+            src='/images/LOGO.png'
             alt='Flower'
             width={30}
           />

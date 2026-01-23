@@ -160,7 +160,7 @@ function About() {
       {/* <FlowerRow></FlowerRow> */}
       <h1 className='about-me-header text-(--color-accent) z-10'>ABOUT ME</h1>
       <img
-        src='/src/assets/images/arrow.png'
+        src='/images/arrow.png'
         alt='arrow down'
         className='arrow absolute top-[27%] right-[40%] h-46 w-24'
       />
@@ -191,22 +191,22 @@ function About() {
         <div className='relative h-[45dvh] flex justify-center items-center lg:w-1/2 lg:h-[65dvh]'>
           <img
             className='picture-1 absolute rotate-3 top-0 h-full'
-            src='/src/assets/images/portfoliofoto_BW.jpg'
+            src='/images/portfoliofoto_BW.jpg'
             alt='picture of me'
           />
           <img
             className='picture-2 absolute rotate-6 top-0 h-full'
-            src='/src/assets/images/paragliden.jpeg'
+            src='/images/paragliden.jpeg'
             alt='picture of me'
           />
           <img
             className='picture-3 absolute rotate-12 top-0 h-full'
-            src='/src/assets/images/klettersteig.jpeg'
+            src='/images/klettersteig.jpeg'
             alt='picture of me'
           />
           <img
             className='picture-4 absolute top-0 h-full'
-            src='/src/assets/images/IMG_2225_BW.jpeg'
+            src='/images/IMG_2225_BW.jpeg'
             alt='picture of me'
           />
         </div>

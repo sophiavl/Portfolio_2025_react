@@ -31,7 +31,7 @@ export default function FlowerRow() {
         <img
           key={i}
           className='flower w-8 h-auto lg:w-10 2xl:w-14'
-          src='src/assets/images/LOGO.png'
+          src='/images/LOGO.png'
           alt='logo'
         />
       ))}

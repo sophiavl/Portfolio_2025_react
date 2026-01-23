@@ -14,7 +14,7 @@ function Navbar({
         href='/'
       >
         <img
-          src='/src/assets/images/logo.png'
+          src='/images/logo.png'
           alt='Logo'
           className='w-8 h-auto lg:w-10 2xl:w-12'
           width='32'

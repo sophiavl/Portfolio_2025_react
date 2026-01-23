@@ -17,35 +17,35 @@ function Projects() {
       title: "VIRTUAL REALITY FOR LEARNING DUTCH",
       description:
         "A virtual reality experience designed for children of refugees to learn Dutch in an engaging and interactive way. Each scene is modeled on real-life environments, allowing learners to encounter vocabulary that reflects their daily lives. In every scene, children pick up objects, hear the word pronounced, and see it spelled out, reinforcing both listening and reading skills. The goal was to create an accessible, fun, and immersive way to learn Dutch.",
-      image: "/src/assets/images/VR-foto.jpg",
+      image: "/images/VR-foto.jpg",
       skills: ["BLENDER", "UNITY"],
     },
     {
       title: "GRADUATION PROJECT - JUST / LITERUURMUSEUM",
       description:
         "For my graduation project at the Literatuurmuseum, I redesigned the navigation structure of the museum’s digital exhibitions. I focused on improving usability and consistency across different collections by translating complex content into a clear, intuitive interface. Through user research, interaction design, and iterative prototyping in Figma, I created a navigation system that helps visitors understand where they are, what they can explore, and how exhibitions relate to each other. The result is a more accessible and user-friendly experience for a diverse audience.",
-      image: "/src/assets/images/literatuurmuseum.png",
+      image: "/images/literatuurmuseum.png",
       skills: ["FIGMA", "UI/UX DESIGN", "VUE"],
     },
     {
       title: "INTERNSHIP - CLAPPFORM",
       description:
         "During my internship at Clappform, I worked on a data visualization tool that gives users insight into databases, data relationships, and role-based access control. Using Vue and Nuxt, I helped build interactive visualizations for ERDs, data lineage, and queries, translating complex technical structures into understandable UI components. My work focused on creating scalable, maintainable front-end solutions that make complex data and permissions clear and usable for non-technical users.",
-      image: "/src/assets/images/Clappform.png",
+      image: "/images/Clappform.png",
       skills: ["FIGMA", "VUE", "VUEFLOW", "NUXT"],
     },
     {
       title: "THIS WEBSITE",
       description:
         "I designed and developed this portfolio from scratch, starting with the visual design and interaction concepts in Figma and translating them into a responsive React application. Using GSAP, I created subtle, scroll-based animations that guide the user through my work and enhance the overall experience without distracting from the content. The focus of this project was to display my projects in an engaging way.",
-      image: "/src/assets/images/portfolio-website.png",
+      image: "/images/portfolio-website.png",
       skills: ["FIGMA", "REACT", "GSAP"],
     },
     {
       title: "ADVENT CALENDER",
       description:
         "I designed and built an online advent calender to practise frontend development in a fun way.  Inspired by the joy of opening a new advent door each day, this project delivers a daily “piece of internet”, counting down to Christmas. Take a look at it here: ",
-      image: "/src/assets/images/advent.png",
+      image: "/images/advent.png",
       skills: ["FIGMA", "VUE"],
     },
   ];
