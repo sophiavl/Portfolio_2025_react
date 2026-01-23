@@ -160,7 +160,7 @@ function About() {
       {/* <FlowerRow></FlowerRow> */}
       <h1 className='about-me-header text-(--color-accent) z-10'>ABOUT ME</h1>
       <img
-        src='/images/arrow.png'
+        src='/images/Arrow.png'
         alt='arrow down'
         className='arrow absolute top-[27%] right-[40%] h-46 w-24'
       />

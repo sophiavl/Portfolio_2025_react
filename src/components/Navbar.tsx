@@ -1,4 +1,5 @@
 import { Icon } from "@iconify/react";
+import { Link } from "react-router-dom";
 
 function Navbar({
   navbarOpen,
@@ -9,19 +10,19 @@ function Navbar({
 }) {
   return (
     <nav className='fixed top-0 left-0 w-full z-10 flex justify-between items-center h-[7dvh] bg-(--color-primary) px-6 border-b border-(--color-stroke)/30 xl:px-8 2xl:px-14'>
-      <a
+      <Link
         className='flex items-center gap-2 xl:gap-4'
-        href='/'
+        to={"/"}
       >
         <img
-          src='/images/logo.png'
+          src='/images/LOGO.png'
           alt='Logo'
           className='w-8 h-auto lg:w-10 2xl:w-12'
           width='32'
           height='36'
         ></img>
         <p className='nav-item'>SVL</p>
-      </a>
+      </Link>
 
       <button
         className='lg:hidden'
@@ -43,25 +44,16 @@ function Navbar({
           />
         )}
       </button>
-      <div className='hidden lg:flex gap-8 '>
-        <a
+      <div className='nav-item hidden lg:flex gap-8 '>
+        <Link to={"/about"}></Link>
+        <Link
           className='nav-item'
-          href='/about'
-        >
-          ABOUT ME
-        </a>
-        <a
+          to={"/projects"}
+        ></Link>
+        <Link
+          to={"/contact"}
           className='nav-item'
-          href='/projects'
-        >
-          PROJECTS
-        </a>
-        <a
-          className='nav-item'
-          href='/contact'
-        >
-          CONTACT
-        </a>
+        ></Link>
       </div>
     </nav>
   );

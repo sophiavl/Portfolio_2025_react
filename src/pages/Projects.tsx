@@ -44,9 +44,10 @@ function Projects() {
     {
       title: "ADVENT CALENDER",
       description:
-        "I designed and built an online advent calender to practise frontend development in a fun way.  Inspired by the joy of opening a new advent door each day, this project delivers a daily “piece of internet”, counting down to Christmas. Take a look at it here: ",
+        "I designed and built an online advent calender to practise frontend development in a fun way.  Inspired by the joy of opening a new advent door each day, this project delivers a daily “piece of internet”, counting down to Christmas. Take a look at it here:",
       image: "/images/advent.png",
       skills: ["FIGMA", "VUE"],
+      link: "https://adventkalender-sophiavls-projects.vercel.app/",
     },
   ];
 
@@ -82,7 +83,7 @@ function Projects() {
               className={`transition-opacity duration-300 w-8 h-auto lg:w-10 ${
                 i === activeIndex ? "opacity-100" : "opacity-50"
               }`}
-              src='src/assets/images/LOGO.png'
+              src='/images/LOGO.png'
               alt='logo'
             />
           ))}
@@ -105,19 +106,29 @@ function Projects() {
                   <h3>{project.title}</h3>
                   <div className='h-px w-full bg-(--color-secondary)'></div>
                 </div>
-                <div className='flex flex-col justify-between w-full gap-12 h-[93%]'>
-                  <div className='flex flex-col pt-4 h-[80%] justify-start gap-4 xl:flex-row'>
-                    <img
-                      src={project.image}
-                      className='w-full h-[50%] object-fit md:h-[70%] order-1 lg:w-[30vw] lg:h-auto lg:order-2 xl:w-[50vw]'
-                      alt=''
-                    />
-                    <p className='card-desc w-full order-2 lg:order-1'>
-                      {project.description}
-                    </p>
+                <div className='flex flex-col justify-between w-full gap-6 h-full'>
+                  <div className='flex flex-col xl:flex-row gap-4'>
+                    <div
+                      className='w-full bg-cover h-[30vh] md:h-[40vh] md:w-full order-1 lg:w-[30vw] lg:h-[30vw] lg:order-2 xl:w-[40vw] xl:h-[60vh]'
+                      style={{ backgroundImage: `url(${project.image})` }}
+                    ></div>
+
+                    <div className='flex flex-col order-2 lg:order-1 lg:w-1/2 lg:gap-2'>
+                      <p className='card-desc'>{project.description}</p>
+                      {project.link && (
+                        <a
+                          href={project.link}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          className='text-accent underline mt-2 card-desc'
+                        >
+                          {project.link}
+                        </a>
+                      )}
+                    </div>
                   </div>
 
-                  <div className='flex w-[full] gap-2 lg:w-[40%]'>
+                  <div className='flex flex-wrap gap-2 lg:w-[40%]'>
                     {project.skills.map((skill) => (
                       <Tag
                         key={skill}

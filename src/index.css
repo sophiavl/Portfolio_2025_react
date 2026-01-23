@@ -130,6 +130,8 @@ line-height: clamp(1.5rem, 2vw, 3rem);
 .menu-item{
   color: var(--color-accent);
   text-align: center;
+  font-size: clamp(5rem, 3vw, 6rem);
+;
 }
 .label-text{
   font-size: clamp(1.5rem, 1.8vw, 2.25rem);

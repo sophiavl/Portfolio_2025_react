@@ -32,7 +32,7 @@ function Hero() {
       gsap.set(".about-text", { opacity: 0, y: -20 });
 
       gsap.from(".hero-name", {
-        x: -200,
+        x: -300,
         opacity: 0,
         duration: 1,
         ease: "power3.out",
@@ -42,8 +42,8 @@ function Hero() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: ".pin-container",
-          start: "top 12%",
-          end: "+=2500",
+          start: "top 20%",
+          end: "+=2000",
           scrub: true,
           pin: true,
           anticipatePin: 1,
@@ -56,7 +56,7 @@ function Hero() {
         {
           rotation: 360,
           ease: "none",
-          duration: 1,
+          duration: 5,
           stagger: 0.09,
         },
         0,
@@ -71,7 +71,7 @@ function Hero() {
           ease: "power2.out",
           pin: true,
         },
-        0.5,
+        0,
       );
       tl.to(".about-text", {
         opacity: 0,
@@ -102,7 +102,7 @@ function Hero() {
         scrollTrigger: {
           trigger: ".work-together-section",
           start: "top 10%",
-          end: "+=1100",
+          end: "+=2000",
           pin: true,
           scrub: true,
           // markers: true,
@@ -149,7 +149,7 @@ function Hero() {
           <p className='about-text'>{aboutText}</p>
         </div>
         <div className='skill-starter pt-64 h-2'></div>
-        <div className='skill-items flex flex-col gap-2 xl:inline-grid gap-y-3.75 gap-x-3.75 self-stretch grid-rows-[repeat(3,fit-content(100%))]  grid-cols-3'>
+        <div className='skill-items flex flex-col gap-2 xl:inline-grid gap-y-3.75 gap-x-3.75 self-stretch grid-rows-[repeat(3,fit-content(100%))] grid-cols-3'>
           {[...Array(skills.length)].map((_, i) => (
             <SkillBlock
               level={skills[i].level}
@@ -160,7 +160,7 @@ function Hero() {
         </div>
         <div className='h-10'></div>
 
-        <div className='work-together-section flex flex-col h-[200dvh] py-6 gap-18'>
+        <div className='work-together-section flex flex-col h-[270dvh] py-6 gap-18'>
           <div className='pin-work flex flex-col gap-6'>
             <h3 className='want-work text-(--color-accent)'>
               Want to work together?
