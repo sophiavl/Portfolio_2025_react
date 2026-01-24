@@ -1,10 +1,11 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { Link } from "react-router-dom";
 
 type ButtonProps = {
   label: string;
-  to?: string;
+  to: string;
   className: string;
 };
 
@@ -40,12 +41,12 @@ export default function Button({ label, to, className }: ButtonProps) {
     { scope: buttonRef },
   );
   return (
-    <a
+    <Link
       ref={buttonRef}
-      href={to}
+      to={to}
       className={`button cursor-pointer h-18 px-6 py-4 bg-(--color-primary) flex justify-center border-2 border-(--color-secondary) items-center ${className}`}
     >
       <span className='button-text'>{label}</span>
-    </a>
+    </Link>
   );
 }
