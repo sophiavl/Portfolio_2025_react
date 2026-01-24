@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Oswald:wght@200..700&display=swap');
 
 :root {
     --color-primary: #FFF6F2;
@@ -39,13 +40,11 @@
   font-family: "Oswald";
   src: url("/fonts/Oswald-Bold.ttf") format("truetype");
   font-weight: 700;
-  font-style: italic;
 }
 @font-face {
   font-family: "Oswald";
   src: url("/fonts/Oswald-Light.ttf") format("truetype");
   font-weight: 300;
-  font-style: italic;
 }
 
 html, body, #root {
