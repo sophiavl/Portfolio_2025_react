@@ -45,15 +45,19 @@ function Navbar({
         )}
       </button>
       <div className='nav-item hidden lg:flex gap-8 '>
-        <Link to={"/about"}></Link>
+        <Link to={"/about"}>ABOUT ME</Link>
         <Link
           className='nav-item'
           to={"/projects"}
-        ></Link>
+        >
+          PROJECTS
+        </Link>
         <Link
           to={"/contact"}
           className='nav-item'
-        ></Link>
+        >
+          CONTACT
+        </Link>
       </div>
     </nav>
   );

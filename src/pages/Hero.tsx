@@ -168,7 +168,7 @@ function Hero() {
             <Button
               className='contact-button w-[20rem] xl:w-160 h-40'
               label='GET IN TOUCH'
-              to='/projects'
+              to='/contact'
             ></Button>
           </div>
           <div className='flex flex-col gap-6'>
