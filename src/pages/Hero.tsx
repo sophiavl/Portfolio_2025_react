@@ -43,7 +43,7 @@ function Hero() {
         scrollTrigger: {
           trigger: ".pin-container",
           start: "top 20%",
-          end: "+=2000",
+          end: "+=1800",
           scrub: true,
           pin: true,
           anticipatePin: 1,
