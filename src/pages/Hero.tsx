@@ -28,6 +28,8 @@ function Hero() {
     "Hi! I’m Sophia, a front-end developer and UI/UX designer from the Netherlands. I love designing and developing clean, intuitive interfaces that actually make sense to the people using them. I'm collecting skills to be able to do this...";
   useGSAP(
     () => {
+      const mm = gsap.matchMedia();
+
       gsap.set(".skill-block", { opacity: 0, scale: 0.9 });
       gsap.set(".about-text", { opacity: 0, y: -20 });
 
@@ -39,63 +41,132 @@ function Hero() {
         stagger: 0.15,
       });
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".pin-container",
-          start: "top 20%",
-          end: "+=1800",
-          scrub: true,
-          pin: true,
-          anticipatePin: 1,
-          // markers: true,
-        },
+      mm.add("(min-width: 1024px)", () => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".pin-container",
+            start: "top 20%",
+            end: "+=1800",
+            scrub: true,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        (tl.to(
+          ".flower",
+          {
+            rotation: 360,
+            ease: "none",
+            duration: 5,
+            stagger: 0.09,
+          },
+          0,
+        ),
+          tl.to(
+            ".about-text",
+            {
+              opacity: 1,
+              y: 20,
+              ease: "power2.out",
+            },
+            0,
+          ),
+          tl.to(
+            ".about-text",
+            {
+              opacity: 0,
+              y: 20,
+              ease: "power2.out",
+            },
+            1,
+          ));
+        return () => tl.kill();
       });
 
-      tl.to(
-        ".flower",
-        {
-          rotation: 360,
-          ease: "none",
-          duration: 5,
-          stagger: 0.09,
-        },
-        0,
-      );
+      mm.add("(max-width: 1023px)", () => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".pin-container",
+            start: "top 10%",
+            end: "+=1100",
+            scrub: true,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
 
-      // About tekst fade in
-      tl.to(
-        ".about-text",
-        {
-          opacity: 1,
-          y: 20,
-          ease: "power2.out",
-          pin: true,
-        },
-        0,
-      );
-      tl.to(".about-text", {
-        opacity: 0,
-        y: 20,
-        ease: "power2.out",
-        pin: true,
+        (tl.to(
+          ".flower",
+          {
+            rotation: 360,
+            ease: "none",
+            duration: 4,
+            stagger: 0.09,
+          },
+          0,
+        ),
+          tl.to(
+            ".about-text",
+            {
+              opacity: 1,
+              y: 20,
+              ease: "power2.out",
+            },
+            0,
+          ),
+          tl.to(
+            ".about-text",
+            {
+              opacity: 0,
+              y: 20,
+              ease: "power2.out",
+            },
+            1,
+          ));
       });
 
-      ScrollTrigger.batch(".skill-block", {
-        start: "top 70%",
-        onEnter: (batch) =>
-          gsap.to(batch, {
-            opacity: 1,
-            scale: 1,
-            stagger: 0.15,
-            duration: 0.6,
-            ease: "power3.out",
-          }),
-        onLeaveBack: (batch) =>
-          gsap.to(batch, {
-            opacity: 0,
-            scale: 0.9,
-            duration: 0.3,
-          }),
+      ScrollTrigger.matchMedia({
+        "(min-width: 1024px)": () => {
+          ScrollTrigger.batch(".skill-block", {
+            start: "top 70%",
+            onEnter: (batch) =>
+              gsap.to(batch, {
+                opacity: 1,
+                scale: 1,
+                stagger: 0.15,
+                duration: 0.6,
+                ease: "power3.out",
+              }),
+            onLeaveBack: (batch) =>
+              gsap.to(batch, {
+                opacity: 0,
+                scale: 0.9,
+                duration: 0.3,
+              }),
+          });
+        },
+        "(max-width: 1023px)": () => {
+          ScrollTrigger.batch(".skill-block", {
+            start: "top 95%",
+            onEnter: (batch) =>
+              gsap.to(batch, {
+                opacity: 1,
+                scale: 1,
+                stagger: 0.15,
+                duration: 0.6,
+                ease: "power3.out",
+              }),
+            onLeaveBack: (batch) =>
+              gsap.to(batch, {
+                opacity: 0,
+                scale: 0.9,
+                duration: 0.3,
+              }),
+          });
+        },
       });
 
       const tlWork = gsap.timeline({
@@ -145,7 +216,7 @@ function Hero() {
         </div>
       </div>
       <div className='intro-section flex flex-col gap-6'>
-        <div className='pin-container relative flex flex-col gap-24 h-[250dvh]'>
+        <div className='pin-container relative flex flex-col gap-6  min-h-[105dvh] lg:h-[250dvh] lg:gap-24'>
           <FlowerRow></FlowerRow>
           <p className='about-text'>{aboutText}</p>
         </div>
