@@ -7,25 +7,20 @@ type ButtonProps = {
   label: string;
   to: string;
   className: string;
+  newTab?: boolean;
 };
 
-export default function Button({ label, to, className }: ButtonProps) {
+export default function Button({
+  label,
+  to,
+  className,
+  newTab = false,
+}: ButtonProps) {
   const buttonRef = useRef<HTMLAnchorElement>(null);
-
-  // const baseClasses = "h-18 px-6 py-[1rem] flex justify-center items-center";
-
-  // const variantClasses =
-  //   variant === "primary"
-  //     ? "bg-[var(--color-primary)] border border-[var(--color-secondary)]"
-  //     : "bg-[var(--color-accent)]";
-
-  // const textColorClass =
-  //   variant === "primary"
-  //     ? "text-[var(--color-secondary)]"
-  //     : "text-[var(--color-primary)]";
-
   useGSAP(
     () => {
+      if (!buttonRef.current) return;
+
       const tl = gsap.timeline({ paused: true });
 
       tl.to(buttonRef.current, {
@@ -35,8 +30,8 @@ export default function Button({ label, to, className }: ButtonProps) {
         duration: 1,
       });
 
-      buttonRef.current!.onmouseenter = () => tl.play();
-      buttonRef.current!.onmouseleave = () => tl.reverse();
+      buttonRef.current.onmouseenter = () => tl.play();
+      buttonRef.current.onmouseleave = () => tl.reverse();
     },
     { scope: buttonRef },
   );
@@ -44,7 +39,9 @@ export default function Button({ label, to, className }: ButtonProps) {
     <Link
       ref={buttonRef}
       to={to}
-      className={`button cursor-pointer h-18 px-6 py-4 bg-(--color-primary) flex justify-center border-2 border-(--color-secondary) items-center ${className}`}
+      target={newTab ? "_blank" : undefined}
+      rel={newTab ? "noopener noreferrer" : undefined}
+      className={`button cursor-pointer h-18 px-6 py-4 bg-(--color-primary) flex justify-center border border-(--color-secondary) items-center ${className}`}
     >
       <span className='button-text'>{label}</span>
     </Link>

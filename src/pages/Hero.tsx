@@ -90,7 +90,7 @@ function Hero() {
           scrollTrigger: {
             trigger: ".pin-container",
             start: "top 10%",
-            end: "+=1100",
+            end: "+=700",
             scrub: true,
             pin: true,
             anticipatePin: 1,
@@ -150,7 +150,7 @@ function Hero() {
         },
         "(max-width: 1023px)": () => {
           ScrollTrigger.batch(".skill-block", {
-            start: "top 95%",
+            start: "top 80%",
             onEnter: (batch) =>
               gsap.to(batch, {
                 opacity: 1,
@@ -173,7 +173,7 @@ function Hero() {
         scrollTrigger: {
           trigger: ".work-together-section",
           start: "top 10%",
-          end: "+=2000",
+          end: "+=1000",
           pin: true,
           scrub: true,
           // markers: true,
@@ -209,7 +209,7 @@ function Hero() {
           </div>
           {/* <FlowerRow></FlowerRow> */}
           <Button
-            className='w-full lg:w-1/2 xl:w-1/3'
+            className='w-full lg:w-1/3 lg:h-[15%] xl:w-1/4'
             label='GET IN TOUCH'
             to='/contact'
           ></Button>
@@ -232,13 +232,13 @@ function Hero() {
         </div>
         <div className='h-10'></div>
 
-        <div className='work-together-section flex flex-col h-[270dvh] py-6 gap-18'>
+        <div className='work-together-section flex flex-col min-h-[240dvh] py-6 gap-18 lg:min-h-[205dvh]'>
           <div className='pin-work flex flex-col gap-6'>
             <h3 className='want-work text-(--color-accent)'>
               Want to work together?
             </h3>
             <Button
-              className='contact-button w-[20rem] xl:w-160 h-40'
+              className='contact-button w-auto h-12 lg:h-30 xl:w-160'
               label='GET IN TOUCH'
               to='/contact'
             ></Button>
@@ -248,14 +248,14 @@ function Hero() {
               Not convinced yet?
             </h3>
 
-            <div className='about-project-buttons flex w-full gap-4'>
+            <div className='about-project-buttons flex flex-col w-full gap-4 lg:flex-row'>
               <Button
-                className='w-[20rem] xl:w-160 h-40'
+                className='w-auto h-12 lg:h-30 xl:w-160'
                 label='SEE PROJECTS'
                 to='/projects'
               ></Button>
               <Button
-                className='w-[20rem] xl:w-160 h-40'
+                className='w-auto h-12 lg:h-30 xl:w-160'
                 label='ABOUT ME'
                 to='/about'
               ></Button>

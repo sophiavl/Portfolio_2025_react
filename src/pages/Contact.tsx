@@ -16,17 +16,15 @@ function Contact() {
         <h1 className='hero-name text-(--color-accent)'>CONTACT</h1>
         <p>LET'S GET IN TOUCH!</p>
       </div>
-      <div className='flex flex-col gap-4 2xl:flex-row 2xl:pt-48'>
+      <div className='flex flex-col gap-4 lg:flex-row 2xl:pt-'>
         {contactOptions.map((option, i) => (
-          <a
+          <Button
             key={i}
-            href={option.link}
-            target='_blank'
-            rel='noopener noreferrer'
-            className='contact-block border border-(--color-secondary) flex items-center justify-center transition-transform duration-300 bg-(--color-primary) text-(--color-secondary) w-full h-48 2xl:w-1/3'
-          >
-            {option.label}
-          </a>
+            newTab={true}
+            className='w-auto h-30 lg:w-1/3 lg:h-40'
+            label={option.label}
+            to={option.link}
+          ></Button>
         ))}
       </div>
     </div>
