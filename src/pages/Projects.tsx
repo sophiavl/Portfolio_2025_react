@@ -72,15 +72,15 @@ function Projects() {
   return (
     <div
       ref={containerRef}
-      className='pin-container h-dvh flex flex-col justify-between pt-16 px-6 md:px-8 2xl:px-14 2xl:gap-6'
+      className='pin-container h-dvh flex flex-col justify-between pt-12 px-4 md:px-8 md:pt-16 2xl:px-14 2xl:gap-6'
     >
-      <div className='flex flex-col gap-4 justify-between'>
+      <div className='flex flex-col justify-between gap-2'>
         <h1 className='text-(--color-accent)'>PROJECTS</h1>
-        <div className='flex h-[4dvh] w-full justify-between md:w-1/2'>
+        <div className='flex h-[5dvh] w-3/4 justify-between md:w-1/2'>
           {projects.map((_, i) => (
             <img
               key={i}
-              className={`transition-opacity duration-300 w-8 h-auto lg:w-10 ${
+              className={`transition-opacity duration-300 w-auto h-full lg:w-10 ${
                 i === activeIndex ? "opacity-100" : "opacity-50"
               }`}
               src='/images/LOGO.png'
@@ -90,7 +90,7 @@ function Projects() {
         </div>
       </div>
 
-      <div className='h-[80dvh] overflow-hidden xl:h-[80dvh]'>
+      <div className='h-full overflow-hidden xl:h-[80dvh]'>
         <div
           ref={trackRef}
           className='flex w-fit h-full'
@@ -107,9 +107,9 @@ function Projects() {
                   <div className='h-px w-full bg-(--color-secondary)'></div>
                 </div>
                 <div className='flex flex-col justify-between w-full gap-6 h-full'>
-                  <div className='flex flex-col xl:flex-row gap-4'>
+                  <div className='flex flex-col gap-2 lg:gap-6 xl:flex-row '>
                     <div
-                      className='w-full bg-cover h-[30vh] md:h-[40vh] md:w-full order-1 lg:w-[30vw] lg:h-[30vw] lg:order-2 xl:w-[40vw] xl:h-[60vh]'
+                      className='w-full bg-cover h-[20vh] md:h-[40vh] md:w-full order-1 lg:w-[30vw] lg:h-[30vw] lg:order-2 xl:w-[40vw] xl:h-[60vh]'
                       style={{ backgroundImage: `url(${project.image})` }}
                     ></div>
 

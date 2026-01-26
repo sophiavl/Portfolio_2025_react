@@ -9,7 +9,7 @@ function Navbar({
   setNavbarOpen: (open: boolean) => void;
 }) {
   return (
-    <nav className='fixed top-0 left-0 w-full z-10 flex justify-between items-center h-[7dvh] bg-(--color-primary) px-6 border-b border-(--color-stroke)/30 xl:px-8 2xl:px-14'>
+    <nav className='fixed top-0 left-0 w-full z-10 flex justify-between items-center h-[7dvh] bg-(--color-primary) px-4 md:px-6 border-b border-(--color-stroke)/30 xl:px-8 2xl:px-14'>
       <Link
         className='flex items-center gap-2 xl:gap-4'
         to={"/"}
@@ -17,7 +17,7 @@ function Navbar({
         <img
           src='/images/LOGO.png'
           alt='Logo'
-          className='w-8 h-auto lg:w-10 2xl:w-12'
+          className='w-6 h-auto lg:w-10 2xl:w-12'
           width='32'
           height='36'
         ></img>
@@ -32,14 +32,14 @@ function Navbar({
           <Icon
             style={{ color: "#333333" }}
             icon='material-symbols-light:close'
-            width='48'
-            height='48'
+            width='36'
+            height='36'
           />
         ) : (
           <Icon
             icon='material-symbols-light:menu-rounded'
-            width='42'
-            height='42'
+            width='36'
+            height='36'
             style={{ color: "#333333" }}
           />
         )}
