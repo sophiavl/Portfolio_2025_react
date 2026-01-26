@@ -216,7 +216,7 @@ function Hero() {
         </div>
       </div>
       <div className='intro-section flex flex-col gap-6'>
-        <div className='pin-container relative flex flex-col gap-6  min-h-[105dvh] lg:h-[250dvh] lg:gap-24'>
+        <div className='pin-container relative flex flex-col gap-6 min-h-[80dvh] lg:h-[250dvh] lg:gap-24'>
           <FlowerRow></FlowerRow>
           <p className='about-text'>{aboutText}</p>
         </div>
