@@ -18,7 +18,7 @@ function Projects() {
       description:
         "A virtual reality experience that helps children of refugees learn Dutch in an engaging way. Set in familiar, real-life environments, learners interact with objects to hear and see words, reinforcing both listening and reading skills. The goal was to create an accessible, fun, and immersive learning experience.",
       mediaType: "video",
-      mediaSrc: "/images/demo_spinoza_groep1.mp4",
+      mediaSrc: "/images/demo_VR.mp4",
       skills: ["BLENDER", "UNITY"],
     },
     {
