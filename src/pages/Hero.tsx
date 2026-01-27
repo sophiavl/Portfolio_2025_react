@@ -226,7 +226,7 @@ function Hero() {
   return (
     <div
       ref={containerRef}
-      className='flex flex-col gap-8 px-8 2xl:px-28'
+      className='flex flex-col gap-8 px-4 md:px-8 2xl:px-14'
     >
       <div className='h-dvh flex flex-col justify-between pt-24 items-start bg-primary'>
         <div className='flex flex-col items-start h-[90%] justify-between gap-12 w-full'>

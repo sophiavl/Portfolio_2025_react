@@ -179,7 +179,7 @@ function About() {
   });
 
   return (
-    <div className='flex flex-col about-scroll gap-2 h-dvh py-2 px-8 lg:py-14 2xl:px-28'>
+    <div className='flex flex-col about-scroll gap-2 h-dvh py-2 px-4 md:px-8 lg:py-14 2xl:px-14'>
       {/* <FlowerRow></FlowerRow> */}
       <h1 className='about-me-header text-(--color-accent) z-10'>ABOUT ME</h1>
       {/* <img
