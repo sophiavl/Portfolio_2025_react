@@ -6,11 +6,15 @@ import { useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { SplitText } from "gsap/all";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function Hero() {
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const heroNameRef = useRef<HTMLHeadingElement | null>(null);
+  const frontendRef = useRef<HTMLHeadingElement | null>(null);
+  const uiUxRef = useRef<HTMLHeadingElement | null>(null);
   const skills = [
     { skillname: "REACT", level: 4 },
     { skillname: "TAILWINDCSS", level: 4 },
@@ -29,23 +33,52 @@ function Hero() {
   useGSAP(
     () => {
       const mm = gsap.matchMedia();
+      const nameSplit = new SplitText(heroNameRef.current, {
+        type: "chars",
+      });
+
+      const frontendSplit = new SplitText(frontendRef.current, {
+        type: "chars",
+      });
+      const uiUxSplit = new SplitText(uiUxRef.current, {
+        type: "chars",
+      });
 
       gsap.set(".skill-block", { opacity: 0, scale: 0.9 });
       gsap.set(".about-text", { opacity: 0, y: -20 });
 
-      gsap.from(".hero-name", {
-        x: -300,
+      gsap.from(nameSplit.chars, {
+        xPercent: 100,
         opacity: 0,
+        x: -10,
+        stagger: 0.05,
         duration: 1,
         ease: "power3.out",
-        stagger: 0.15,
+      });
+      gsap.from(frontendSplit.chars, {
+        xPercent: 100,
+        opacity: 0,
+        x: -10,
+        stagger: 0.05,
+        duration: 1,
+        ease: "power3.out",
+        delay: 0.8,
+      });
+      gsap.from(uiUxSplit.chars, {
+        xPercent: 100,
+        opacity: 0,
+        x: -10,
+        stagger: 0.05,
+        duration: 1,
+        ease: "power3.out",
+        delay: 1.3,
       });
 
       mm.add("(min-width: 1024px)", () => {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: ".pin-container",
-            start: "top 20%",
+            start: "top 12%",
             end: "+=1800",
             scrub: true,
             pin: true,
@@ -59,7 +92,6 @@ function Hero() {
           {
             rotation: 360,
             ease: "none",
-            duration: 5,
             stagger: 0.09,
           },
           0,
@@ -199,14 +231,24 @@ function Hero() {
       <div className='h-dvh flex flex-col justify-between pt-24 items-start bg-primary'>
         <div className='flex flex-col items-start h-[90%] justify-between gap-12 w-full'>
           <div className='flex flex-col gap-8'>
-            <h1 className='hero-name text-(--color-accent)'>
-              SOPHIA VAN LIESHOUT
-            </h1>
+            <div className='bg-(--color-primary) px-4 border border-(--color-secondary)'>
+              <h1
+                ref={heroNameRef}
+                className='hero-name text-(--color-accent)'
+              >
+                SOPHIA VAN LIESHOUT
+              </h1>
+            </div>
             <div className='flex flex-col gap-2'>
-              <h2>FRONTEND DEVELOPMENT</h2>
-              <h2>UI/UX DESIGN</h2>
+              <h2 ref={frontendRef}>FRONTEND DEVELOPMENT</h2>
+              <h2 ref={uiUxRef}>UI/UX DESIGN</h2>
             </div>
           </div>
+          <img
+            className='absolute top-80 left-0 -z-10 md:top-50 xl:top-20'
+            src='/images/bloesem.svg'
+            alt='flower tree'
+          />
           {/* <FlowerRow></FlowerRow> */}
           <Button
             className='w-full lg:w-1/3 lg:h-[15%] xl:w-1/4'
@@ -216,7 +258,7 @@ function Hero() {
         </div>
       </div>
       <div className='intro-section flex flex-col gap-6'>
-        <div className='pin-container relative flex flex-col gap-6 min-h-[80dvh] lg:h-[250dvh] lg:gap-24'>
+        <div className='pin-container relative flex flex-col gap-6 min-h-[80dvh] lg:h-[170dvh] lg:gap-24'>
           <FlowerRow></FlowerRow>
           <p className='about-text'>{aboutText}</p>
         </div>
@@ -250,12 +292,12 @@ function Hero() {
 
             <div className='about-project-buttons flex flex-col w-full gap-4 lg:flex-row'>
               <Button
-                className='w-auto h-12 lg:h-30 xl:w-160'
+                className='w-auto h-12 lg:h-30 lg:w-1/2'
                 label='SEE PROJECTS'
                 to='/projects'
               ></Button>
               <Button
-                className='w-auto h-12 lg:h-30 xl:w-160'
+                className='w-auto h-12 lg:h-30 lg:w-1/2'
                 label='ABOUT ME'
                 to='/about'
               ></Button>

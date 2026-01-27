@@ -75,7 +75,7 @@ letter-spacing: 1.05px;
 
 h1{
   font-family: 'Oswald', sans-serif;
-font-size: clamp(1.3rem, 3vw, 6rem);
+font-size: clamp(1.5rem, 3vw, 6rem);
 font-style: normal;
 font-weight: 700;
 line-height: normal;
@@ -101,7 +101,7 @@ letter-spacing: 0.04rem;
 
 p{
 font-family: "Oswald", sans-serif;
-font-size: clamp(1.75rem, 2vw, 3rem);
+font-size: clamp(1.2rem, 2vw, 3rem);
 font-style: normal;
 font-weight: 300;
 line-height: clamp(2rem, 6vw, 5rem); /* 136.364% */

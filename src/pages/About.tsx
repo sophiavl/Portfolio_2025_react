@@ -10,10 +10,10 @@ function About() {
 
     gsap.set([".about-me-header"], {
       top: "30%",
-      left: "50%",
+      left: "150%",
       xPercent: 50,
       yPercent: 50,
-      scale: 3,
+      scale: 5,
     });
     gsap.set([".about-me-1", ".about-me-2", ".about-me-3", ".about-me-4"], {
       opacity: 0,
@@ -156,16 +156,16 @@ function About() {
   });
 
   return (
-    <div className='flex flex-col about-scroll h-dvh py-14 gap-4 px-8 2xl:px-28'>
+    <div className='flex flex-col about-scroll gap-2 h-dvh py-2 px-8 lg:py-14 2xl:px-28'>
       {/* <FlowerRow></FlowerRow> */}
       <h1 className='about-me-header text-(--color-accent) z-10'>ABOUT ME</h1>
-      <img
+      {/* <img
         src='/images/Arrow.png'
         alt='arrow down'
         className='arrow absolute top-[27%] right-[40%] h-46 w-24'
-      />
+      /> */}
       <div className='flex flex-col lg:flex-row'>
-        <div className='about-text-stage relative h-[30dvh] w-full lg:w-1/2'>
+        <div className='about-text-stage relative h-[25dvh] w-full lg:w-1/2'>
           <p className='about-me-1 absolute top-0 left-0'>
             Hi! I’m Sophia, a front-end developer and UI/UX designer from the
             Netherlands. I design and build user-friendly intuitive interfaces
@@ -188,24 +188,24 @@ function About() {
           </p>
         </div>
 
-        <div className='relative h-[45dvh] flex justify-center items-center lg:w-1/2 lg:h-[65dvh]'>
+        <div className='relative h-[50dvh] w-full flex justify-center items-center lg:w-1/2 lg:h-[65dvh]'>
           <img
-            className='picture-1 absolute rotate-3 top-0 h-full'
+            className='picture-1 absolute rotate-3 top-3 h-full'
             src='/images/portfoliofoto_BW.jpg'
             alt='picture of me'
           />
           <img
-            className='picture-2 absolute rotate-6 top-0 h-full'
+            className='picture-2 absolute -rotate-6 top-3 h-full'
             src='/images/paragliden.jpeg'
             alt='picture of me'
           />
           <img
-            className='picture-3 absolute rotate-12 top-0 h-full'
+            className='picture-3 absolute rotate-12 top-3 h-full'
             src='/images/klettersteig.jpeg'
             alt='picture of me'
           />
           <img
-            className='picture-4 absolute top-0 h-full'
+            className='picture-4 absolute top-3 h-full'
             src='/images/IMG_2225_BW.jpeg'
             alt='picture of me'
           />
