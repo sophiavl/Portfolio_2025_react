@@ -4,6 +4,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import MainLayout from "./layouts/MainLayout";
 import Projects from "./pages/Projects";
+import ProjectDetail from "./pages/ProjectDetail";
 
 function App() {
   return (
@@ -24,6 +25,10 @@ function App() {
         <Route
           path='/projects'
           element={<Projects />}
+        />
+        <Route
+          path='/projects/:slug'
+          element={<ProjectDetail />}
         />
       </Route>
     </Routes>

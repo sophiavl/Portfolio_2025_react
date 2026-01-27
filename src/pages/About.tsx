@@ -29,10 +29,10 @@ function About() {
 
     gsap.set([".about-me-header"], {
       top: "30%",
-      left: "150%",
+      left: "15%",
       xPercent: 50,
       yPercent: 50,
-      scale: 5,
+      scale: 2,
     });
 
     gsap.set([".picture-1", ".picture-2", ".picture-3", ".picture-4"], {

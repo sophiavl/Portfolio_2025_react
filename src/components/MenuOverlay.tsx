@@ -9,7 +9,7 @@ export default function MenuOverlay({
 }) {
   return (
     <nav
-      className={`fixed bottom-0 left-0 w-full p-10 z-10 h-[93vh] pt-52 
+      className={`fixed bottom-0 left-0 w-full p-10 z-10 h-[93vh] pt-36 
       bg-(--color-primary) flex justify-center 
       transition-all duration-300
       ${navbarOpen ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-full"}`}

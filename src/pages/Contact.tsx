@@ -11,7 +11,7 @@ function Contact() {
   ];
 
   return (
-    <div className='flex flex-col pt-24 gap-12 px-4 md:px-8 h-[93dvh] 2xl:px-14'>
+    <div className='flex flex-col pt-18 gap-12 px-4 md:px-8 h-[93dvh] 2xl:px-14'>
       <div className='flex flex-col'>
         <h1 className='hero-name text-(--color-accent)'>CONTACT</h1>
         <p>LET'S GET IN TOUCH!</p>

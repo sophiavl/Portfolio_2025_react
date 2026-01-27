@@ -17,12 +17,12 @@ function Hero() {
   const uiUxRef = useRef<HTMLHeadingElement | null>(null);
   const skills = [
     { skillname: "REACT", level: 4 },
-    { skillname: "TAILWINDCSS", level: 4 },
+    { skillname: "TAILWINDCSS", level: 5 },
     { skillname: "FIGMA", level: 5 },
     { skillname: "GSAP", level: 3 },
-    { skillname: "BLENDER", level: 2 },
+    { skillname: "BLENDER", level: 3 },
     { skillname: "LARAVEL", level: 2 },
-    { skillname: "HTML / CSS / JAVASCRIPT", level: 4 },
+    { skillname: "HTML / CSS / JAVASCRIPT", level: 5 },
     { skillname: "VUE", level: 4 },
     { skillname: "TYPESCRIPT", level: 3 },
   ];
@@ -266,6 +266,7 @@ function Hero() {
         <div className='skill-items flex flex-col gap-2 xl:inline-grid gap-y-3.75 gap-x-3.75 self-stretch grid-rows-[repeat(3,fit-content(100%))] grid-cols-3'>
           {[...Array(skills.length)].map((_, i) => (
             <SkillBlock
+              key={i}
               level={skills[i].level}
               className='skill'
               skill={skills[i].skillname}
