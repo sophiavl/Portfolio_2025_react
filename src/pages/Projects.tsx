@@ -23,7 +23,7 @@ function Projects() {
     },
     {
       slug: "graduation-project",
-      title: "GRADUATION PROJECT - JUST / LITERUURMUSEUM",
+      title: "GRADUATION PROJECT - JUST / LITERATUURMUSEUM",
       description:
         "For my graduation project at the Literatuurmuseum, I redesigned the navigation structure of the digital exhibitions. Using user research, interaction design, and iterative prototyping in Figma, I created a clearer and more consistent interface that helps visitors understand the structure and relationships between collections, resulting in a more accessible user experience.",
       mediaType: "image",
