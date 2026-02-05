@@ -17,7 +17,7 @@ function Navbar({
         <img
           src='/images/LOGO.png'
           alt='Logo'
-          className='w-6 h-auto lg:w-10 2xl:w-12'
+          className='w-6 h-auto lg:w-8'
           width='32'
           height='36'
         ></img>

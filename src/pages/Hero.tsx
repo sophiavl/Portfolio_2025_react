@@ -79,7 +79,7 @@ function Hero() {
           scrollTrigger: {
             trigger: ".pin-container",
             start: "top 12%",
-            end: "+=1800",
+            end: "+=2000",
             scrub: true,
             pin: true,
             anticipatePin: 1,
@@ -205,7 +205,7 @@ function Hero() {
         scrollTrigger: {
           trigger: ".work-together-section",
           start: "top 10%",
-          end: "+=1000",
+          end: "+=800",
           pin: true,
           scrub: true,
           // markers: true,
@@ -263,6 +263,7 @@ function Hero() {
           <p className='about-text'>{aboutText}</p>
         </div>
         <div className='skill-starter pt-64 h-2'></div>
+        <h3 className='text-(--color-accent)'>Skills</h3>
         <div className='skill-items flex flex-col gap-2 xl:inline-grid gap-y-3.75 gap-x-3.75 self-stretch grid-rows-[repeat(3,fit-content(100%))] grid-cols-3'>
           {[...Array(skills.length)].map((_, i) => (
             <SkillBlock
@@ -275,7 +276,7 @@ function Hero() {
         </div>
         <div className='h-10'></div>
 
-        <div className='work-together-section flex flex-col min-h-[240dvh] py-6 gap-18 lg:min-h-[205dvh]'>
+        <div className='work-together-section flex flex-col min-h-[240dvh] py-6 gap-8 lg:min-h-[205dvh]'>
           <div className='pin-work flex flex-col gap-6'>
             <h3 className='want-work text-(--color-accent)'>
               Want to work together?

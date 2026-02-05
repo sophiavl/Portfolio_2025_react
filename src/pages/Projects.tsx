@@ -56,7 +56,7 @@ function Projects() {
       description:
         "I designed and built an online advent calender to practise frontend development in a fun way.  Inspired by the joy of opening a new advent door each day, this project delivers a daily “piece of internet”, counting down to Christmas. Take a look at it here:",
       mediaType: "image",
-      mediaSrc: "{/images/advent.png",
+      mediaSrc: "/images/advent.png",
       skills: ["FIGMA", "VUE"],
       link: "https://adventkalender-sophiavls-projects.vercel.app/",
     },
@@ -70,7 +70,7 @@ function Projects() {
           <div
             key={i}
             onClick={() => setActiveIndex(activeIndex === i ? null : i)}
-            className='relative group overflow-hidden w-full border-12 border-(--color-accent)'
+            className='relative group overflow-hidden w-full'
           >
             {project.mediaType === "video" ? (
               <video
