@@ -1,6 +1,6 @@
 import { useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
+import { motion } from "motion/react";
+
 import { Link } from "react-router-dom";
 
 type ButtonProps = {
@@ -8,42 +8,37 @@ type ButtonProps = {
   to: string;
   className: string;
   newTab?: boolean;
+  borderColor: string;
+  textColor: string;
 };
 
 export default function Button({
   label,
   to,
+  borderColor,
   className,
   newTab = false,
+  textColor,
 }: ButtonProps) {
-  const buttonRef = useRef<HTMLAnchorElement>(null);
-  useGSAP(
-    () => {
-      if (!buttonRef.current) return;
+  const buttonRef = useRef<HTMLDivElement>(null);
 
-      const tl = gsap.timeline({ paused: true });
-
-      tl.to(buttonRef.current, {
-        backgroundColor: "#990A3C",
-        color: "#FFF6F2",
-        border: "none",
-        duration: 1,
-      });
-
-      buttonRef.current.onmouseenter = () => tl.play();
-      buttonRef.current.onmouseleave = () => tl.reverse();
-    },
-    { scope: buttonRef },
-  );
   return (
-    <Link
+    <motion.div
       ref={buttonRef}
-      to={to}
-      target={newTab ? "_blank" : undefined}
-      rel={newTab ? "noopener noreferrer" : undefined}
-      className={`button cursor-pointer h-18 px-6 py-4 bg-(--color-primary) flex justify-center border border-(--color-secondary) items-center ${className}`}
+      whileHover={{
+        backgroundColor: "var(--color-accent)",
+        color: "var(--color-secondary)",
+      }}
+      className={`button px-8 py-1 cursor-pointer border ${borderColor} ${textColor} flex justify-center items-center ${className} lg:py-4 lg:border-2`}
     >
-      <span className='button-text'>{label}</span>
-    </Link>
+      <Link
+        to={to}
+        className='w-full h-full flex justify-center items-center'
+        target={newTab ? "_blank" : undefined}
+        rel={newTab ? "noopener noreferrer" : undefined}
+      >
+        <span className='button-text'>{label}</span>
+      </Link>
+    </motion.div>
   );
 }

@@ -1,132 +1,213 @@
-import { useRef, useState } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import Button from "../components/Button";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import FlowerRow from "../components/FlowerRow";
-import Tag from "../components/Tag";
-import { Link } from "react-router-dom";
+import { motion, useAnimation } from "motion/react";
+import { useNavigate } from "react-router-dom";
+import { projects } from "../data/projects.ts";
+import { useEffect, useRef, useState } from "react";
+import styles from "./Projects.module.css";
 
-gsap.registerPlugin(ScrollTrigger);
+const ArrowIcon = ({ className = "h-6 w-6" }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox='0 0 25 25'
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+  >
+    <path
+      d='M0.707031 24L23.707 1M23.707 1H0.707031M23.707 1V23.5'
+      stroke='#61E531'
+      strokeWidth='2'
+    />
+  </svg>
+);
 
-function Projects() {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const projects = [
-    {
-      slug: "virtual-reality-dutch",
-      title: "VIRTUAL REALITY FOR LEARNING DUTCH",
-      description:
-        "A virtual reality experience that helps children of refugees learn Dutch in an engaging way. Set in familiar, real-life environments, learners interact with objects to hear and see words, reinforcing both listening and reading skills. The goal was to create an accessible, fun, and immersive learning experience.",
-      mediaType: "video",
-      mediaSrc: "/images/demo_VR.mp4",
-      skills: ["BLENDER", "UNITY"],
-    },
-    {
-      slug: "graduation-project",
-      title: "GRADUATION PROJECT - JUST / LITERATUURMUSEUM",
-      description:
-        "For my graduation project at the Literatuurmuseum, I redesigned the navigation structure of the digital exhibitions. Using user research, interaction design, and iterative prototyping in Figma, I created a clearer and more consistent interface that helps visitors understand the structure and relationships between collections, resulting in a more accessible user experience.",
-      mediaType: "image",
+function ProjectCard({
+  project,
+  index,
+}: {
+  project: (typeof projects)[0];
+  index: number;
+}) {
+  const navigate = useNavigate();
+  const mouseDownX = useRef(0);
 
-      mediaSrc: "/images/literatuurmuseum.png",
-      skills: ["FIGMA", "UI/UX DESIGN", "VUE"],
-    },
-    {
-      slug: "internship-clappform",
-      title: "INTERNSHIP - CLAPPFORM",
-      description:
-        "During my internship at Clappform, I worked on a data visualization tool that provides insight into databases, data relationships, and role-based access control. Using Vue and Nuxt, I helped build interactive visualizations for ERDs, data lineage, and queries, turning complex technical structures into clear, usable interfaces for non-technical users.",
-      mediaType: "image",
-      mediaSrc: "/images/Clappform.png",
-      skills: ["FIGMA", "VUE", "VUEFLOW", "NUXT"],
-    },
-    {
-      slug: "this-website",
-      title: "THIS WEBSITE",
-      description:
-        "I designed and developed this portfolio from scratch, starting with the visual design and interaction concepts in Figma and translating them into a responsive React application. Using GSAP, I created subtle, scroll-based animations that guide the user through my work and enhance the overall experience without distracting from the content. The focus of this project was to display my projects in an engaging way.",
-      mediaType: "image",
+  const handleMouseDown = (e: React.MouseEvent) => {
+    mouseDownX.current = e.clientX;
+  };
 
-      mediaSrc: "/images/portfolio-website.png",
-      skills: ["FIGMA", "REACT", "GSAP"],
-    },
-    {
-      slug: "advent-calender",
-      title: "ADVENT CALENDER",
-      description:
-        "I designed and built an online advent calender to practise frontend development in a fun way.  Inspired by the joy of opening a new advent door each day, this project delivers a daily “piece of internet”, counting down to Christmas. Take a look at it here:",
-      mediaType: "image",
-      mediaSrc: "/images/advent.png",
-      skills: ["FIGMA", "VUE"],
-      link: "https://adventkalender-sophiavls-projects.vercel.app/",
-    },
-  ];
+  const handleClick = (e: React.MouseEvent) => {
+    // Alleen navigeren als het geen drag was (minder dan 5px bewogen)
+    if (Math.abs(e.clientX - mouseDownX.current) < 5) {
+      navigate(`/projects/${index}`);
+    }
+  };
 
   return (
-    <div className='py-14 px-4 md:px-8 lg:py-24 2xl:px-14'>
-      <h1 className='text-(--color-accent)'>PROJECTS</h1>
-      <div className='flex flex-col gap-4'>
-        {projects.map((project, i) => (
-          <div
-            key={i}
-            onClick={() => setActiveIndex(activeIndex === i ? null : i)}
-            className='relative group overflow-hidden w-full'
-          >
-            {project.mediaType === "video" ? (
-              <video
-                src={project.mediaSrc}
-                autoPlay
-                muted
-                loop
-                playsInline
-                className='w-full h-80 object-cover md:h-96 lg:h-180'
-              />
-            ) : (
-              <img
-                src={project.mediaSrc}
-                alt={project.title}
-                className='w-full h-80 object-cover md:h-96 lg:h-180'
-              />
-            )}
+    <motion.div
+      // layoutId={`project-${index}`}
+      layout={false}
+      initial={{ opacity: 1 }} // ← add this
+      animate={{ opacity: 1 }}
+      onMouseDown={handleMouseDown}
+      onClick={handleClick}
+      className='shrink-0 w-[75vw] max-w-[90vw] h-full bg-(--color-secondary) rounded-sm overflow-hidden flex flex-col lg:w-[50vw]'
+    >
+      <div className='flex min-h-36 mr-8 justify-between items-start'>
+        <div className='flex flex-col h-full justify-between pb-8 w-[90%]'>
+          <h3 className='lightText'>{project.title}</h3>
+          <p className='lightText subText'>{project.tags.join(" | ")}</p>
+        </div>
+        <ArrowIcon className=' w-6 h-6 lg:w-10 lg:h-10' />
+      </div>
+      {project.mediaType === "video" && typeof project.mediaSrc === "string" ? (
+        <video
+          src={project.mediaSrc}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className='w-full object-cover'
+        />
+      ) : Array.isArray(project.mediaSrc) ? (
+        <div className='flex gap-2'>
+          {project.mediaSrc.map((src, i) => (
+            <img
+              key={i}
+              src={src}
+              alt={project.title}
+              className='w-full object-cover'
+            />
+          ))}
+        </div>
+      ) : (
+        <img
+          src={project.mediaSrc}
+          alt={project.title}
+          className='w-full object-cover'
+        />
+      )}
+      {/* <img
+        src={project.mediaSrc}
+        className='object-cover flex-1 w-full'
+      /> */}
+    </motion.div>
+  );
+}
 
-            <div
-              className={`
-  absolute inset-0
-  bg-(--color-accent)
-  flex flex-col items-center justify-between gap-4 py-12 px-8
-  transition-opacity duration-300 lg:py-24 lg:px-36 
-  ${
-    activeIndex === i
-      ? "opacity-100 pointer-events-auto"
-      : "opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto"
-  }
-`}
-            >
-              <h3 className='text-(--color-primary) text-center'>
-                {project.title}
-              </h3>
-              <div className='flex gap-2 '>
-                {project.skills.map((skill, i) => (
-                  <Tag
-                    key={i}
-                    label={skill}
-                  ></Tag>
-                ))}
-              </div>
-              <Link
-                to={`/projects/${project.slug}`}
-                onClick={(e) => {
-                  e.stopPropagation();
-                }}
-                className='button cursor-pointer w-full h-10 px-6 py-4 bg-(--color-primary) flex justify-center items-center lg:h-24 lg:w-1/3'
-              >
-                <span className='button-text'>VIEW PROJECT</span>
-              </Link>
-            </div>
-          </div>
+function Projects() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const dragStartX = useRef(0);
+  const scrollStartX = useRef(0);
+  const autoScrollRef = useRef<number | null>(null);
+  const isUserInteracting = useRef(false);
+
+  // Auto-scroll
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    isUserInteracting.current = false; // reset bij elke mount (ook terugkomen van detail)
+
+    const speed = 0.6;
+
+    const tick = () => {
+      if (!isUserInteracting.current) {
+        track.scrollLeft += speed;
+        if (track.scrollLeft >= track.scrollWidth - track.clientWidth) {
+          track.scrollLeft = 0;
+        }
+      }
+      autoScrollRef.current = requestAnimationFrame(tick);
+    };
+
+    // Kleine delay zodat layout klaar is, maar veel korter dan voorheen
+    const timeout = setTimeout(() => {
+      autoScrollRef.current = requestAnimationFrame(tick);
+    }, 50); // was impliciet afhankelijk van ResizeObserver — nu altijd 50ms
+
+    return () => {
+      clearTimeout(timeout);
+      if (autoScrollRef.current) cancelAnimationFrame(autoScrollRef.current);
+    };
+  }, []);
+
+  // Desktop drag
+  const onMouseDown = (e: React.MouseEvent) => {
+    isUserInteracting.current = true;
+    setIsDragging(true);
+    dragStartX.current = e.clientX;
+    scrollStartX.current = trackRef.current?.scrollLeft ?? 0;
+  };
+
+  const onMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !trackRef.current) return;
+    const delta = dragStartX.current - e.clientX;
+    trackRef.current.scrollLeft = scrollStartX.current + delta;
+  };
+
+  const onMouseUp = () => {
+    setIsDragging(false);
+    setTimeout(() => {
+      isUserInteracting.current = false;
+    }, 500); // was 2000
+  };
+  const onMouseLeave = () => {
+    setIsDragging(false);
+    setTimeout(() => {
+      isUserInteracting.current = false;
+    }, 500);
+  };
+
+  const onTouchEnd = () => {
+    setTimeout(() => {
+      isUserInteracting.current = false;
+    }, 500); // was 2000
+  };
+
+  const onTouchStart = () => {
+    isUserInteracting.current = true;
+  };
+
+  return (
+    <>
+      <motion.div
+        className={styles.projects}
+        transition={{ duration: 1, ease: "easeOut" }}
+        style={{ pointerEvents: "none" }}
+      >
+        <motion.h1
+          layoutId='projects-header'
+          className='page-header'
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          PROJECTS
+        </motion.h1>
+      </motion.div>
+
+      {/* Carousel staat BUITEN elke motion.div */}
+      <div
+        ref={trackRef}
+        className='w-full fixed bottom-0 h-[70%] gap-4 flex px-4 overflow-x-scroll lg:h-[60%]'
+        style={{
+          cursor: isDragging ? "grabbing" : "grab",
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+          userSelect: "none",
+        }}
+        onMouseDown={onMouseDown}
+        onMouseMove={onMouseMove}
+        onMouseUp={onMouseUp}
+        onMouseLeave={onMouseLeave}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+      >
+        {[...projects, ...projects].map((project, i) => (
+          <ProjectCard
+            key={i}
+            project={project}
+            index={i % projects.length}
+          />
         ))}
       </div>
-    </div>
+    </>
   );
 }
 

@@ -6,35 +6,37 @@ import MainLayout from "./layouts/MainLayout";
 import Projects from "./pages/Projects";
 import ScrollToTop from "./components/ScrollToTop";
 import ProjectDetail from "./pages/ProjectDetail";
+import { LayoutGroup } from "motion/react";
 
 function App() {
   return (
     <>
-      <ScrollToTop></ScrollToTop>
-      <Routes>
-        <Route element={<MainLayout />}>
-          <Route
-            path='/'
-            element={<Hero />}
-          />
-          <Route
-            path='/about'
-            element={<About />}
-          />
-          <Route
-            path='/contact'
-            element={<Contact />}
-          />
-          <Route
-            path='/projects'
-            element={<Projects />}
-          />
-          <Route
-            path='/projects/:slug'
-            element={<ProjectDetail />}
-          />
-        </Route>
-      </Routes>
+      <LayoutGroup>
+        <Routes>
+          <Route element={<MainLayout />}>
+            <Route
+              path='/'
+              element={<Hero />}
+            />
+            <Route
+              path='/about'
+              element={<About />}
+            />
+            <Route
+              path='/contact'
+              element={<Contact />}
+            />
+            <Route
+              path='/projects'
+              element={<Projects />}
+            />
+            <Route
+              path='/projects/:id'
+              element={<ProjectDetail />}
+            />
+          </Route>
+        </Routes>
+      </LayoutGroup>
     </>
   );
 }

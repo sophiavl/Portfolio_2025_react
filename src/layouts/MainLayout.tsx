@@ -9,7 +9,7 @@ export default function MainLayout() {
 
   return (
     <div className='relative'>
-      <GridBackground />
+      {/* <GridBackground /> */}
       <Navbar
         navbarOpen={navbarOpen}
         setNavbarOpen={setNavbarOpen}

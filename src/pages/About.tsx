@@ -1,252 +1,150 @@
-import FlowerRow from "../components/FlowerRow";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { SplitText } from "gsap/all";
-import { useRef } from "react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import styles from "./About.module.css";
+import React, { useRef } from "react";
+import PageWrapper from "../layouts/PageWrapper.tsx";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  type MotionValue,
+} from "motion/react";
+const fadeInUp = {
+  initial: { opacity: 0, y: 40 },
+  whileInView: { opacity: 1, y: 0 },
+  transition: { duration: 2, ease: "easeOut" as const },
+  viewport: { once: false },
+};
 function About() {
-  const aboutTextRef1 = useRef<HTMLParagraphElement | null>(null);
-  const aboutTextRef2 = useRef<HTMLParagraphElement | null>(null);
-  const aboutTextRef3 = useRef<HTMLParagraphElement | null>(null);
-  const aboutTextRef4 = useRef<HTMLParagraphElement | null>(null);
-  useGSAP(() => {
-    const scrollLength = window.innerHeight * 12;
+  const text = [
+    "Hi! My name is Sophia van Lieshout",
+    "\n",
+    "I'm a developer from the Netherlands, focused on frontend and UI/UX. I build interfaces that feel obvious, because the best design is the kind people don't notice.",
+    "\n\n",
+    "Besides that, I'm an allround hobbyist. If I have not tried a specific hobby, I'm probably planning to soon. So in my free time, you will probably find me crocheting yet another clothing top, making stuff out of clay or trying out a new sport.",
+  ];
+  const scrollRef = useRef(null);
+  const textRef = useRef(null);
+  const { scrollYProgress } = useScroll();
+  const headerFilter = useTransform(
+    scrollYProgress,
+    [0, 0.1],
+    ["blur(0px)", "blur(40px)"],
+  );
+  const imgFilter = useTransform(
+    scrollYProgress,
+    [0.8, 1],
+    ["blur(0px)", "blur(40px)"],
+  );
 
-    const aboutTextRefSplit1 = SplitText.create(aboutTextRef1.current, {
-      type: "words",
-    });
-    const aboutTextRefSplit2 = SplitText.create(aboutTextRef2.current, {
-      type: "words",
-    });
-    const aboutTextRefSplit3 = SplitText.create(aboutTextRef3.current, {
-      type: "words",
-    });
-    const aboutTextRefSplit4 = SplitText.create(aboutTextRef4.current, {
-      type: "words",
-    });
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    gsap.set([".about-me-header"], {
-      top: "30%",
-      left: "15%",
-      xPercent: 50,
-      yPercent: 50,
-      scale: 2,
-    });
-
-    gsap.set([".picture-1", ".picture-2", ".picture-3", ".picture-4"], {
-      opacity: 0,
-    });
-
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: ".about-scroll",
-          start: "top 7%",
-          end: () => "+=" + scrollLength,
-          pin: true,
-          scrub: 1,
-          markers: false,
-          anticipatePin: 1,
-        },
-      })
-      .to(
-        ".about-me-header",
-        {
-          position: "relative",
-          top: 0,
-          left: 0,
-          xPercent: 0,
-          yPercent: 0,
-          x: 0,
-          y: 0,
-          scale: 1,
-          ease: "power3.out",
-        },
-        0,
-      )
-      .to(
-        ".arrow",
-        {
-          opacity: 0,
-        },
-        1,
-      )
-      .from(aboutTextRefSplit1.words, {
-        opacity: 0,
-        y: 12,
-        stagger: {
-          each: 0.03,
-          from: "start",
-        },
-        duration: 0.35,
-        ease: "power2.out",
-      })
-      .to(
-        ".picture-1",
-        {
-          opacity: 1,
-        },
-        1.5,
-      )
-
-      .to(
-        ".about-me-1",
-        {
-          opacity: 0,
-          y: -20,
-        },
-        3,
-      )
-      .from(aboutTextRefSplit2.words, {
-        opacity: 0,
-        y: 12,
-        stagger: {
-          each: 0.03,
-          from: "start",
-        },
-        duration: 0.35,
-        ease: "power2.out",
-      })
-      .to(
-        ".about-me-2",
-        {
-          opacity: 0,
-          y: -20,
-        },
-        5,
-      )
-      .from(aboutTextRefSplit3.words, {
-        opacity: 0,
-        y: 12,
-        stagger: {
-          each: 0.03,
-          from: "start",
-        },
-        duration: 0.35,
-        ease: "power2.out",
-      })
-      .to(
-        ".picture-2",
-        {
-          opacity: 1,
-        },
-        6,
-      )
-      .to(
-        ".picture-3",
-        {
-          opacity: 1,
-        },
-        8,
-      )
-
-      .to(
-        ".about-me-3",
-        {
-          opacity: 0,
-          y: -20,
-        },
-        9,
-      )
-
-      .from(aboutTextRefSplit4.words, {
-        opacity: 0,
-        y: 12,
-        stagger: {
-          each: 0.03,
-          from: "start",
-        },
-        duration: 0.35,
-        ease: "power2.out",
-      })
-      .to(
-        ".picture-4",
-        {
-          opacity: 1,
-        },
-        10,
-      )
-      .to(
-        ".about-me-4",
-        {
-          opacity: 0,
-          y: -20,
-        },
-        12,
-      );
+  const { scrollYProgress: textProgress } = useScroll({
+    target: textRef,
+    offset: ["start 0.8", "end 0.4"],
   });
+  function ScrubText({
+    text,
+    progress,
+    className,
+  }: {
+    text: string[];
+    progress: MotionValue<number>;
+    className?: string;
+  }) {
+    // Splits alleen de tekst-segmenten in woorden, sla \n op als marker
+    const parts: { word: string; isBreak: boolean }[] = [];
+    text.forEach((seg) => {
+      if (seg === "\n" || seg === "\n\n") {
+        parts.push({ word: seg, isBreak: true });
+      } else {
+        seg.split(" ").forEach((w) => parts.push({ word: w, isBreak: false }));
+      }
+    });
 
+    const wordCount = parts.filter((p) => !p.isBreak).length;
+    let wordIndex = 0;
+
+    return (
+      <span className={className}>
+        {parts.map((part, i) => {
+          if (part.isBreak) {
+            return part.word === "\n\n" ? (
+              <React.Fragment key={i}>
+                <br />
+                <br />
+              </React.Fragment>
+            ) : (
+              <br key={i} />
+            );
+          }
+
+          const start = wordIndex / wordCount;
+          const end = (wordIndex + 1) / wordCount;
+          wordIndex++;
+
+          const opacity = useTransform(progress, [start, end], [0.15, 1]);
+
+          return (
+            <motion.span
+              key={i}
+              style={{ opacity }}
+              className='inline-block mr-[0.25em]'
+            >
+              {part.word}
+            </motion.span>
+          );
+        })}
+      </span>
+    );
+  }
   return (
-    <div className='flex flex-col about-scroll gap-2 h-dvh py-2 px-4 md:px-8 lg:py-14 2xl:px-14'>
-      {/* <FlowerRow></FlowerRow> */}
-      <h1 className='about-me-header text-(--color-accent) z-10'>ABOUT ME</h1>
-      {/* <img
-        src='/images/Arrow.png'
-        alt='arrow down'
-        className='arrow absolute top-[27%] right-[40%] h-46 w-24'
-      /> */}
-      <div className='flex flex-col lg:flex-row'>
-        <div className='about-text-stage relative h-[25dvh] w-full lg:w-1/2'>
-          <p
-            ref={aboutTextRef1}
-            className='about-me-1 absolute top-0 left-0'
-          >
-            Hi! I’m Sophia, a front-end developer and UI/UX designer from the
-            Netherlands. I design and build user-friendly intuitive interfaces
-            that actually make sense to the people using them.
-          </p>
-          <p
-            ref={aboutTextRef2}
-            className='about-me-2 absolute top-0 left-0 '
-          >
-            I work from lofi to hifi in iterations. I believe in simplicity over
-            complexity, mobile-first, usability-focused, and usability testing.
-          </p>
-          <p
-            ref={aboutTextRef3}
-            className='about-me-3 absolute top-0 left-0 '
-          >
-            When I’m not designing or coding, I’m either working out, finding
-            inspiration on Pinterest for yet another crochet project, or
-            thinking about when I can escape to the mountains again.
-          </p>
-          <p
-            ref={aboutTextRef4}
-            className='about-me-4 absolute top-0 left-0 '
-          >
-            Currently looking for a place to grow as a front-end developer,
-            contributing to the development of meaningful products with people
-            who value both solid engineering and thoughtful design. (and good
-            coffee).
-          </p>
-        </div>
-
-        <div className='relative h-[50dvh] w-full flex justify-center items-center lg:w-1/2 lg:h-[65dvh]'>
-          <img
-            className='picture-1 absolute rotate-3 top-3 h-full'
-            src='/images/portfoliofoto_BW.jpg'
-            alt='picture of me'
+    <PageWrapper bgColor='var(--color-secondary)'>
+      <motion.div
+        ref={scrollRef}
+        layoutId='about'
+        transition={{ duration: 1, ease: "easeIn" }}
+        className={styles.about}
+      >
+        <motion.h1
+          style={{ filter: headerFilter }}
+          layoutId='about-header'
+          className='page-header'
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          ABOUT ME
+        </motion.h1>
+        <motion.img
+          style={{ filter: imgFilter }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, ease: "easeIn" }}
+          src='/images/IMG_1310.JPG'
+          alt='picture of sophia'
+          className='object-cover w-1/2 pt-24'
+        ></motion.img>
+        <motion.div className='h-[10dvh] w-full'></motion.div>
+        <motion.p
+          ref={textRef}
+          className='lightText w-1/2 text-center pt-12'
+        >
+          <ScrubText
+            text={text}
+            progress={textProgress}
           />
-          <img
-            className='picture-2 absolute -rotate-6 top-3 h-full'
-            src='/images/paragliden.jpeg'
-            alt='picture of me'
-          />
-          <img
-            className='picture-3 absolute rotate-12 top-3 h-full'
-            src='/images/klettersteig.jpeg'
-            alt='picture of me'
-          />
-          <img
-            className='picture-4 absolute top-3 h-full'
-            src='/images/IMG_2225_BW.jpeg'
-            alt='picture of me'
-          />
-        </div>
-      </div>
-    </div>
+        </motion.p>
+        <motion.div
+          {...fadeInUp}
+          className='flex justify-between w-1/2 pt-24'
+        >
+          <motion.img
+            src='/images/IMG_1182.JPG'
+            className='object-cover w-[48%]'
+          ></motion.img>
+          <motion.img
+            src='/images/IMG_1200.JPG'
+            className='object-cover w-[48%]'
+          ></motion.img>
+        </motion.div>
+        <motion.div className='h-100 w-full'></motion.div>
+      </motion.div>
+    </PageWrapper>
   );
 }
 

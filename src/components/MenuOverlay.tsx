@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import styles from "./MenuOverlay.module.css";
+import { motion } from "motion/react";
 
 export default function MenuOverlay({
   navbarOpen,
@@ -9,39 +11,31 @@ export default function MenuOverlay({
 }) {
   return (
     <nav
-      className={`fixed bottom-0 left-0 w-full p-10 z-10 h-[93vh] pt-36 
-      bg-(--color-primary) flex justify-center 
+      className={`fixed bottom-0 left-0 w-full p-10 z-10 h-[94dvh] pt-36 
+      bg-(--color-secondary) flex justify-center 
       transition-all duration-300
       ${navbarOpen ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-full"}`}
     >
       <ul className='flex flex-col gap-10 items-center'>
-        <li>
-          <Link
-            to='/about'
-            className='menu-item'
-            onClick={() => setNavbarOpen(false)}
-          >
-            ABOUT ME
-          </Link>
-        </li>
-        <li>
-          <Link
-            to='/projects'
-            className='menu-item'
-            onClick={() => setNavbarOpen(false)}
-          >
-            PROJECTS
-          </Link>
-        </li>
-        <li>
-          <Link
-            to='/contact'
-            className='menu-item'
-            onClick={() => setNavbarOpen(false)}
-          >
-            CONTACT
-          </Link>
-        </li>
+        {[
+          { to: "/about", label: "ABOUT ME" },
+          { to: "/projects", label: "PROJECTS" },
+          { to: "/contact", label: "CONTACT" },
+        ].map(({ to, label }) => (
+          <li key={to}>
+            <motion.div
+              className={`${styles.menuItem} text-(--color-primary)`}
+              whileHover={{ color: "var(--color-accent)", scale: 1.1 }}
+            >
+              <Link
+                to={to}
+                onClick={() => setNavbarOpen(false)}
+              >
+                {label}
+              </Link>
+            </motion.div>
+          </li>
+        ))}
       </ul>
     </nav>
   );

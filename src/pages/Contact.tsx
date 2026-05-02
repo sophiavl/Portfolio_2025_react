@@ -1,33 +1,45 @@
-import Button from "../components/Button";
-
+import { motion } from "motion/react";
+import styles from "./Contact.module.css";
+import Button from "../components/Button.tsx";
+import PageWrapper from "../layouts/PageWrapper.tsx";
 function Contact() {
-  const contactOptions = [
-    { label: "E-MAIL", link: "mailto:vanlieshoutsophia@gmail.com" },
-    {
-      label: "LINKEDIN",
-      link: "https://www.linkedin.com/in/sophia-van-lieshout-091513242/",
-    },
-    { label: "GITHUB", link: "https://github.com/sophiavl" },
-  ];
-
   return (
-    <div className='flex flex-col pt-18 gap-12 px-4 md:px-8 h-[93dvh] 2xl:px-14'>
-      <div className='flex flex-col'>
-        <h1 className='hero-name text-(--color-accent)'>CONTACT</h1>
-        <p>LET'S GET IN TOUCH!</p>
-      </div>
-      <div className='flex flex-col gap-4 lg:flex-row 2xl:pt-'>
-        {contactOptions.map((option, i) => (
+    <PageWrapper bgColor='var(--color-secondary)'>
+      <motion.div
+        layoutId='contact'
+        className={styles.contact}
+        transition={{ duration: 1, ease: "easeOut" }}
+      >
+        <motion.h1
+          layoutId='contact-header'
+          className='page-header text-center'
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          LET'S GET IN TOUCH
+        </motion.h1>
+        <motion.p className='lightText text-center'>
+          Think we could build something awesome together? I’d love to hear from
+          you.
+        </motion.p>
+        <div className='flex gap-4 w-full justify-center items-center'>
           <Button
-            key={i}
-            newTab={true}
-            className='w-auto h-30 lg:w-1/3 lg:h-40'
-            label={option.label}
-            to={option.link}
+            label='E-MAIL'
+            to='google.com'
+            className='w-1/3'
+            borderColor='border-(--color-accent)'
+            textColor='text-(--color-primary)'
           ></Button>
-        ))}
-      </div>
-    </div>
+          <Button
+            label='LINKEDIN'
+            to='https://www.linkedin.com/in/sophia-van-lieshout-091513242/'
+            newTab={true}
+            className='w-1/3'
+            borderColor='border-(--color-accent)'
+            textColor='text-(--color-primary)'
+          ></Button>
+        </div>
+      </motion.div>
+    </PageWrapper>
   );
 }
 

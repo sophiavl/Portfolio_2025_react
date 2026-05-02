@@ -60,7 +60,6 @@ function Projects() {
 
   useGSAP(() => {
     const sections = gsap.utils.toArray<HTMLElement>(".project-slide");
-
     gsap.to(sections, {
       xPercent: -100 * (sections.length - 1),
       ease: "none",
