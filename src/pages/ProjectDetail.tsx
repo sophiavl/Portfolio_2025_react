@@ -7,9 +7,9 @@ import PageWrapper from "../layouts/PageWrapper.tsx";
 
 function TextBlock({ title, text }: { title: string; text: string }) {
   return (
-    <div className='flex flex-col gap-4 xl:flex-row xl:justify-between xl:w-[95%]'>
-      <h3 className='text-(--color-primary)/50 '>{title}</h3>
-      <p className='lightText xl:max-w-[85%]'>{text}</p>
+    <div className='flex flex-col gap-4 lg:flex-row lg:justify-between xl:w-[95%]'>
+      <h3 className='text-(--color-primary) '>{title}</h3>
+      <p className='lightText lg:max-w-[70%]'>{text}</p>
     </div>
   );
 }
@@ -38,7 +38,7 @@ function MediaDisplay({
           <img
             key={i}
             src={src}
-            className='h-[50vh] w-auto object-cover xl:h-[70vh]'
+            className='h-[50vh] w-auto object-contain xl:h-[70vh]'
           />
         ),
       )}
@@ -57,7 +57,7 @@ function ProjectDetail() {
     <PageWrapper bgColor='var(--color-secondary)'>
       <motion.div
         layoutId={`project-${id}`}
-        className='flex flex-col overflow-x-hidden pt-18 inset-0 bg-(--color-secondary)'
+        className='flex flex-col pt-18 inset-0 bg-(--color-secondary)'
       >
         <div className='w-full flex flex-col gap-6'>
           <Icon
@@ -74,7 +74,7 @@ function ProjectDetail() {
             mediaType={project.mediaType}
           />
         </div>
-        <div className='page flex flex-col gap-8'>
+        <div className='page flex flex-col gap-2'>
           <div className='flex flex-col gap-12'>
             <div className='flex items-start'>
               <h2 className='lightText'>{project.title}</h2>

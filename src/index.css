@@ -30,6 +30,11 @@
   font-style: normal;
 }
 
+@font-face{
+  font-family: "Cactus Classical Serif";
+  src: "/fonts/CactusClassicalSerif-Regular.ttf"
+}
+
 @font-face {
   font-family: "Instrument Serif";
   src: url("/fonts/InstrumentSerif.ttf") format("truetype");
@@ -93,19 +98,18 @@ letter-spacing: 0.04rem;
 
 h3{
 font-family: "Oswald";
-font-size: clamp(1.6rem, 3.5vw, 2.1rem);
+font-size: clamp(1.6rem, 3.5vw, 2.4rem);
 font-weight: 400;
 line-height: normal;
 letter-spacing: 0.04rem;
 }
 
 p{
-font-family: "Instrument Serif", serif;
-font-size: clamp(1.5rem, 4vw, 2.5rem);
+font-family: "Cactus Classical Serif", serif;
+font-size: clamp(1.5rem, 4vw, 1.8rem);
 font-style: normal;
 font-weight: 300;
-line-height: clamp(2.2rem, 3vw, 5rem); /* 136.364% */
-letter-spacing: 0.0825rem;
+line-height: clamp(3rem, 3vw, 5rem); /* 136.364% */
 }
 
 .subText{
@@ -120,7 +124,6 @@ letter-spacing: 0.0825rem;
   flex-direction: column;
   padding-top: 3rem;
   background-color: var(--color-secondary);
-  width: 100dvw;
   min-height: 100dvh;
 }
 

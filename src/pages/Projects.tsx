@@ -57,7 +57,7 @@ function ProjectCard({
         </div>
         <ArrowIcon className=' w-6 h-6 lg:w-10 lg:h-10' />
       </div>
-      <div className='flex-1 min-h-0 overflow-hidden'>
+      <div className='flex items-start w-full aspect-video overflow-hidden'>
         {project.mediaType === "video" &&
         typeof project.mediaSrc === "string" ? (
           <video
@@ -66,13 +66,13 @@ function ProjectCard({
             muted
             loop
             playsInline
-            className='w-auto h-full object-cover'
+            className='w-[90%] h-full object-contain'
           />
         ) : (
           <img
             src={project.mediaSrc}
             alt={project.title}
-            className='w-auto h-full object-cover'
+            className='w-[90%] h-full object-contain'
           />
         )}
       </div>

@@ -17,8 +17,9 @@ export const projects: Project[] = [
     mediaType: "video",
     mediaSrc: "/images/demo_VR.mp4",
     tags: ["BLENDER", "UNITY"],
-    challenge: "",
-    solution: "",
+    challenge: "The target group consisted of refugee children with very diverse backgrounds and mother tongues. The challenge was to create an application that was understandable for everyone, without being able to rely on a shared language or written instructions. The experience also had to be immersive and accessible enough to effectively stimulate language acquisition in young children.",
+
+solution: "By using virtual reality, we were able to create a visually driven learning environment that requires no common language. Children are placed in recognizable, everyday environments and learn Dutch words by interacting with objects around them. Simultaneously seeing and hearing words reinforces both reading and listening skills, without requiring instructions in any specific language.",
   },
   {
     title: "Navigation structure online museum",

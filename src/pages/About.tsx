@@ -117,12 +117,12 @@ function About() {
           transition={{ duration: 1, ease: "easeIn" }}
           src='/images/IMG_1310.JPG'
           alt='picture of sophia'
-          className='object-cover w-1/2 pt-24'
+          className='object-cover pt-24 w-[90%] lg:w-1/2 '
         ></motion.img>
         <motion.div className='h-[10dvh] w-full'></motion.div>
         <motion.p
           ref={textRef}
-          className='lightText w-1/2 text-center pt-12'
+          className='lightText w-[90%] text-center pt-12 lg:w-1/2'
         >
           <ScrubText
             text={text}
@@ -131,7 +131,7 @@ function About() {
         </motion.p>
         <motion.div
           {...fadeInUp}
-          className='flex justify-between w-1/2 pt-24'
+          className='flex justify-between pt-24 w-[90%] lg:w-1/2'
         >
           <motion.img
             src='/images/IMG_1182.JPG'

@@ -24,7 +24,7 @@ function Contact() {
         <div className='flex gap-4 w-full justify-center items-center'>
           <Button
             label='E-MAIL'
-            to='google.com'
+            to='mailto:vanlieshoutsophia@gmail.com'
             className='w-1/3'
             borderColor='border-(--color-accent)'
             textColor='text-(--color-primary)'
