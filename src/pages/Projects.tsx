@@ -48,7 +48,7 @@ function ProjectCard({
       animate={{ opacity: 1 }}
       onMouseDown={handleMouseDown}
       onClick={handleClick}
-      className='shrink-0 w-[75vw] max-w-[90vw] h-full bg-(--color-secondary) rounded-sm overflow-hidden flex flex-col lg:w-[50vw]'
+      className='shrink-0 max-w-[90vw] h-[90%] bg-(--color-secondary) rounded-sm overflow-hidden flex flex-col lg:w-[50vw]'
     >
       <div className='flex min-h-36 mr-8 justify-between items-start'>
         <div className='flex flex-col h-full justify-between pb-8 w-[90%]'>
@@ -57,33 +57,25 @@ function ProjectCard({
         </div>
         <ArrowIcon className=' w-6 h-6 lg:w-10 lg:h-10' />
       </div>
-      {project.mediaType === "video" && typeof project.mediaSrc === "string" ? (
-        <video
-          src={project.mediaSrc}
-          autoPlay
-          muted
-          loop
-          playsInline
-          className='w-full object-cover'
-        />
-      ) : Array.isArray(project.mediaSrc) ? (
-        <div className='flex gap-2'>
-          {project.mediaSrc.map((src, i) => (
-            <img
-              key={i}
-              src={src}
-              alt={project.title}
-              className='w-full object-cover'
-            />
-          ))}
-        </div>
-      ) : (
-        <img
-          src={project.mediaSrc}
-          alt={project.title}
-          className='w-full object-cover'
-        />
-      )}
+      <div className='flex-1 min-h-0 overflow-hidden'>
+        {project.mediaType === "video" &&
+        typeof project.mediaSrc === "string" ? (
+          <video
+            src={project.mediaSrc}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className='w-auto h-full object-cover'
+          />
+        ) : (
+          <img
+            src={project.mediaSrc}
+            alt={project.title}
+            className='w-auto h-full object-cover'
+          />
+        )}
+      </div>
       {/* <img
         src={project.mediaSrc}
         className='object-cover flex-1 w-full'

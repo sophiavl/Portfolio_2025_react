@@ -2,7 +2,7 @@ interface Project {
    title: string;
   overview: string;
   mediaType: "video" | "image";
-  mediaSrc: string | string[];
+  mediaSrc: string;
   tags: string[];
   challenge: string;
   solution: string;
@@ -28,7 +28,7 @@ export const projects: Project[] = [
     solution: "Using UX research methods including literature studies, usability testing, A/B testing, and iterative prototyping, I designed a universal navigation system applicable across all exhibitions and articles. The final solution introduced a clear navigation bar with a consistent content structure, improved accessibility and readability, and a direct way to navigate back to the main LiteratuurLab overview. A proof of concept was developed in Vue.js and Nuxt.js to validate technical feasibility within JUST’s development environment.",
 
     mediaType: "image",
-    mediaSrc: ["/images/LM_3.png", "/images/LM_1.png", "/images/LM_2.png"],
+    mediaSrc: "/images/thumbnail_LM.png",
     tags: ["FIGMA", "UI/UX DESIGN", "VUE"],
   },
   {
@@ -41,23 +41,23 @@ export const projects: Project[] = [
     mediaSrc: "/images/Clappform.png",
     tags: ["FIGMA", "VUE", "VUEFLOW", "NUXT"],
   },
-  {
-    title: "Portfolio website",
-    overview:
-      "I designed and developed this portfolio from scratch, starting with the visual design and interaction concepts in Figma and translating them into a responsive React application. Using GSAP, I created subtle, scroll-based animations that guide the user through my work and enhance the overall experience without distracting from the content. The focus of this project was to display my projects in an engaging way.",
-    mediaType: "image",
+  // {
+  //   title: "Portfolio website",
+  //   overview:
+  //     "I designed and developed this portfolio from scratch, starting with the visual design and interaction concepts in Figma and translating them into a responsive React application. Using GSAP, I created subtle, scroll-based animations that guide the user through my work and enhance the overall experience without distracting from the content. The focus of this project was to display my projects in an engaging way.",
+  //   mediaType: "image",
 
-    mediaSrc: "/images/portfolio-website.png",
-    tags: ["FIGMA", "REACT", "GSAP"],
-    challenge: "",
-    solution: "",
-  },
+  //   mediaSrc: "/images/portfolio-website.png",
+  //   tags: ["FIGMA", "REACT", "GSAP"],
+  //   challenge: "",
+  //   solution: "",
+  // },
   {
     title: "ADVENT CALENDER",
     overview:
       "I designed and built an online advent calender to practise frontend development in a fun way.  Inspired by the joy of opening a new advent door each day, this project delivers a daily “piece of internet”, counting down to Christmas. Take a look at it here:",
     mediaType: "image",
-    mediaSrc: "/images/advent.png",
+    mediaSrc: "/images/Thumbnail_advent.png",
     tags: ["FIGMA", "VUE"],
     challenge: "",
     solution: "",
