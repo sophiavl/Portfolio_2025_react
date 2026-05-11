@@ -213,7 +213,7 @@ function About() {
                     text={[
                       "I finished my bachelors in computer science in Leiden, the Netherlands",
                       "\n\n",
-                      "Right now I'm based in The Hague, the Netherlands and actively looking for my next jump!",
+                      "Right now I'm based in The Hague and actively looking for my next jump!",
                     ]}
                     progress={overlayTextProgress}
                   />
