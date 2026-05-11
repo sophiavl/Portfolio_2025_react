@@ -1,8 +1,8 @@
 .about{
     background-color: var(--color-secondary);
-    max-width: 100dvw;
     min-height: 100dvh;
     display: flex;
+    overflow-x: clip;
     flex-direction: column;
     align-items: center;
 }

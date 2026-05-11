@@ -38,7 +38,7 @@ function MediaDisplay({
           <img
             key={i}
             src={src}
-            className='h-[50vh] w-auto object-contain xl:h-[70vh]'
+            className='h-[50vh] w-auto object-contain   xl:h-[70vh]'
           />
         ),
       )}
