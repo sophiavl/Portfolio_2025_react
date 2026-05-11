@@ -161,7 +161,7 @@ function About() {
 
         <div
           ref={sequenceRef}
-          style={{ height: "400vh", width: "100%", marginTop: "20vh" }}
+          className='h-[400vh] w-full mt-[5vh] lg:mt-[20vh]'
         >
           <div
             style={{
@@ -196,7 +196,7 @@ function About() {
 
               {/* Overlay rectangle + scrub text */}
               <motion.div
-                className='h-[40%] w-full lg:w-[70%]  m-auto'
+                className='h-[90%] w-full lg:w-[70%] lg:h-[40%]  m-auto'
                 style={{
                   opacity: overlayOpacity,
                   position: "absolute",
